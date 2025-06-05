@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TaskForge</title>
+</head>
+<body>
+    <h1>TaskForge</h1>
+    <a href="{{ url_for('add_task') }}">Add New Task</a>
+
+    {% if tasks %}
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Deadline</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for task in tasks %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.deadline }}</td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.status }}</td>
+            <td>
+                <a href="{{ url_for('delete_task', index=loop.index0) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No tasks yet.</p>
+    {% endif %}
+
+</body>
+</html>
