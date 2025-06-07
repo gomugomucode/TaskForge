@@ -1,8 +1,14 @@
 [
   {
-    "title": "practical ",
-    "deadline": "2025-06-13",
+    "title": "Ai chat bot",
+    "deadline": "2025-06-27",
     "priority": "High",
+    "status": "Pending"
+  },
+  {
+    "title": "play sudoko",
+    "deadline": "2025-06-07",
+    "priority": "Medium",
     "status": "Pending"
   }
 ]

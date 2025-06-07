@@ -2,7 +2,10 @@
 <html>
 <head>
     <title>TaskForge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
+
 <body>
     <h1>TaskForge</h1>
     <a href="{{ url_for('add_task') }}">Add New Task</a>
@@ -20,19 +23,32 @@
         {% for task in tasks %}
         <tr>
             <td>{{ loop.index }}</td>
-            <td>{{ task.title }}</td>
+            <td class="{% if task.status == 'Completed' %}completed{% endif %}">
+                {{ task.title }}
+            </td>
+
             <td>{{ task.deadline }}</td>
             <td>{{ task.priority }}</td>
             <td>{{ task.status }}</td>
             <td>
-                <a href="{{ url_for('delete_task', index=loop.index0) }}">Delete</a>
+                <a href="{{ url_for('toggle_task', index=loop.index0) }}">
+                    {% if task.status != 'Completed' %}
+                     Mark Done
+                    {% else %}
+                     Undo
+                    {% endif %}
+                </a>
+                |
+                <a href="{{ url_for('delete_task', index=loop.index0) }}"> Delete</a>
             </td>
+
         </tr>
         {% endfor %}
     </table>
     {% else %}
-        <p>No tasks yet.</p>
+    <p>No tasks yet.</p>
     {% endif %}
 
 </body>
+
 </html>

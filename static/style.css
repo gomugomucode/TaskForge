@@ -1,0 +1,428 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #2d3748;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2rem;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.5px;
+}
+
+/* Add Task Button */
+body > a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #48bb78;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+body > a::before {
+    content: "➕";
+    margin-right: 0.5rem;
+}
+
+body > a:hover {
+    background: #38a169;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(72, 187, 120, 0.4);
+}
+
+body > a::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+body > a:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Table Container */
+table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none;
+}
+
+/* Table Header */
+th {
+    background: linear-gradient(135deg, #4c51bf 0%, #667eea 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    position: relative;
+    border: none;
+}
+
+th::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+}
+
+/* Table Rows */
+tr {
+    transition: all 0.3s ease;
+    border: none;
+}
+
+tr:not(:first-child) {
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+}
+
+tr:not(:first-child):hover {
+    background: rgba(102, 126, 234, 0.05);
+    transform: translateX(8px);
+    box-shadow: 4px 0 20px rgba(102, 126, 234, 0.1);
+}
+
+tr:not(:first-child):last-child {
+    border-bottom: none;
+}
+
+/* Table Data */
+td {
+    padding: 1.25rem 1.5rem;
+    vertical-align: middle;
+    border: none;
+    font-size: 0.95rem;
+    color: #4a5568;
+}
+
+/* First column (index) */
+td:first-child {
+    font-weight: 700;
+    color: #667eea;
+    font-size: 1.1rem;
+    width: 60px;
+    text-align: center;
+}
+
+/* Task title styling */
+.completed {
+    text-decoration: line-through;
+    color: #a0aec0 !important;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+/* Priority styling */
+td:nth-child(4) {
+    font-weight: 600;
+}
+
+/* Priority colors */
+tr:has(td:nth-child(4):contains("High")) td:nth-child(4) {
+    color: #e53e3e;
+}
+
+tr:has(td:nth-child(4):contains("Medium")) td:nth-child(4) {
+    color: #dd6b20;
+}
+
+tr:has(td:nth-child(4):contains("Low")) td:nth-child(4) {
+    color: #38a169;
+}
+
+/* Status styling */
+td:nth-child(5) {
+    font-weight: 600;
+}
+
+/* Status colors */
+tr:has(td:nth-child(5):contains("Completed")) td:nth-child(5) {
+    color: #38a169;
+}
+
+tr:has(td:nth-child(5):contains("Pending")) td:nth-child(5) {
+    color: #dd6b20;
+}
+
+tr:has(td:nth-child(5):contains("In Progress")) td:nth-child(5) {
+    color: #3182ce;
+}
+
+/* Action buttons */
+td:last-child {
+    width: 200px;
+}
+
+td:last-child a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Mark Done / Undo button */
+td:last-child a:first-child {
+    background: #48bb78;
+    color: white;
+}
+
+td:last-child a:first-child:hover {
+    background: #38a169;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
+/* Delete button */
+td:last-child a:last-child {
+    background: #f56565;
+    color: white;
+}
+
+td:last-child a:last-child:hover {
+    background: #e53e3e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 101, 101, 0.3);
+}
+
+/* Separator styling */
+td:last-child {
+    white-space: nowrap;
+}
+
+/* Remove the pipe separator and add proper spacing */
+tr td:last-child {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Empty state */
+body > p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    margin: 2rem auto;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+body > p::before {
+    content: "📋";
+    display: block;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    body > a {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+    }
+    
+    table {
+        font-size: 0.85rem;
+    }
+    
+    th, td {
+        padding: 1rem 0.75rem;
+    }
+    
+    td:last-child {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: auto;
+    }
+    
+    td:last-child a {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Mobile table - stack layout */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tr {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    tr:hover {
+        transform: none;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    td {
+        border: none;
+        padding: 0.5rem 0;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    td:before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #4c51bf;
+        width: 30%;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Add data labels for mobile */
+    td:nth-child(1):before { content: "#"; }
+    td:nth-child(2):before { content: "Title"; }
+    td:nth-child(3):before { content: "Deadline"; }
+    td:nth-child(4):before { content: "Priority"; }
+    td:nth-child(5):before { content: "Status"; }
+    td:nth-child(6):before { content: "Actions"; }
+    
+    td:last-child {
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+    }
+    
+    td:last-child:before {
+        display: none;
+    }
+}
+
+/* Animation for table rows */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+tr:not(:first-child) {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+tr:not(:first-child):nth-child(2) { animation-delay: 0.1s; }
+tr:not(:first-child):nth-child(3) { animation-delay: 0.2s; }
+tr:not(:first-child):nth-child(4) { animation-delay: 0.3s; }
+tr:not(:first-child):nth-child(5) { animation-delay: 0.4s; }
+tr:not(:first-child):nth-child(6) { animation-delay: 0.5s; }
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Loading animation for better UX */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}

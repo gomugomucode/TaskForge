@@ -30,6 +30,13 @@ class TaskManager:
         with open(TASK_FILE, "w") as f:
             json.dump([task.to_dict() for task in self.tasks], f, indent=2)
 
+    def toggle_task(self, index):
+        if 0 <= index < len(self.tasks):
+            task = self.tasks[index]
+            task.status = 'Completed' if task.status != 'Completed' else 'Pending'
+            self.save_tasks()
+
+
     def load_tasks(self):
         """
         Load tasks from the JSON file.

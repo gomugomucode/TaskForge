@@ -28,5 +28,10 @@ def delete_task(index):
     tm.delete_task(index)
     return redirect(url_for('index'))
 
+@app.route('/toggle/<int:index>')
+def toggle_task(index):
+    tm.toggle_task(index)  
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     app.run(debug=True)
