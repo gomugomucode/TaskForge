@@ -1,9 +1,12 @@
 import json
 import os
+import sqlite3
 from taskforge.task import Task  # Import the Task class from your local module
 
 # File path where tasks will be stored as JSON
 TASK_FILE = "data/tasks.json"
+DB_NAME = "tasks.db"
+
 
 class TaskManager:
     def __init__(self):
@@ -54,3 +57,13 @@ class TaskManager:
                 print(f"Error loading tasks: {e}")
                 return []  # Return empty list if JSON is invalid or file can't be read
         return []  # Return empty list if file does not exist
+
+    def search_tasks(self, query):
+        conn = sqlite3.connect(DB_NAME)
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM tasks WHERE title LIKE ?", ('%' + query + '%',))
+        rows = cursor.fetchall()
+        conn.close()
+        return [task for task in self.tasks if query.lower() in task.title.lower()]
+
+

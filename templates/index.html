@@ -8,12 +8,18 @@
 
 <body>
     <h1>TaskForge</h1>
-    <a href="{{ url_for('add_task') }}">Add New Task</a>
 
+  <div class="controls">
+    <form method="get" action="{{ url_for('index') }}" class="search-form">
+        <input type="text" name="q" placeholder="Search tasks..." value="{{ query }}" class="search-input">
+        <button type="submit" class="btn">Search</button>
+    </form>
+    <a href="{{ url_for('add_task') }}" class="add-task-link">Add New Task</a>
+</div>
     {% if tasks %}
     <table border="1">
         <tr>
-            <th>#</th>
+            <th>S.No.</th>
             <th>Title</th>
             <th>Deadline</th>
             <th>Priority</th>

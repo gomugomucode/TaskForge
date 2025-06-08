@@ -3,14 +3,19 @@
 from flask import Flask, render_template, request, redirect, url_for
 from taskforge.task import Task
 from taskforge.task_manager import TaskManager
+from taskforge.database import init_db
+
+init_db()
+
 
 app = Flask(__name__)
 tm = TaskManager()
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    tasks = tm.list_tasks()
-    return render_template('index.html', tasks=tasks)
+    query = request.args.get('q', '')
+    tasks = tm.search_tasks(query) if query else tm.list_tasks()
+    return render_template('index.html', tasks=tasks, query=query)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_task():
@@ -32,6 +37,8 @@ def delete_task(index):
 def toggle_task(index):
     tm.toggle_task(index)  
     return redirect(url_for('index'))
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

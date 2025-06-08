@@ -73,6 +73,100 @@ body > a:active::after {
     height: 300px;
 }
 
+.controls {
+    padding: 15px;
+
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-input {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.search-input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 172, 254, 0.6);
+}
+
+.btn.secondary {
+    background: linear-gradient(135deg, #ff6b6b, #ff8787);
+}
+
+.btn.secondary:hover {
+    background: linear-gradient(135deg, #ff8787, #ff6b6b);
+}
+
+.add-task-link {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    color: #333;
+    box-shadow: 0 4px 15px rgba(168, 237, 234, 0.4);
+}
+
+.add-task-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(168, 237, 234, 0.6);
+}
+
 /* Table Container */
 table {
     width: 100%;
@@ -353,7 +447,7 @@ body > p::before {
     }
     
     /* Add data labels for mobile */
-    td:nth-child(1):before { content: "#"; }
+    td:nth-child(1):before { content: "S.No."; }
     td:nth-child(2):before { content: "Title"; }
     td:nth-child(3):before { content: "Deadline"; }
     td:nth-child(4):before { content: "Priority"; }
