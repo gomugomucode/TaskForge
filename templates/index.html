@@ -1,60 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>TaskForge</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
-
 <body>
-    <h1>TaskForge</h1>
+    <!-- 🌟 Navbar -->
+    <nav class="navbar">
+        <div class="logo-section">
+            <img src="{{ url_for('static', filename='logo.txt') }}" alt="TaskForge Logo" class="logo">
+            <span class="brand-name">TaskForge</span>
+        </div>
+        <div class="user-section">
+            <span class="username"><i class="fas fa-user-circle"></i> {{ session.get('username', 'Guest') }}</span>
+            <a href="{{ url_for('logout') }}" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </nav>
 
-  <div class="controls">
-    <form method="get" action="{{ url_for('index') }}" class="search-form">
-        <input type="text" name="q" placeholder="Search tasks..." value="{{ query }}" class="search-input">
-        <button type="submit" class="btn">Search</button>
-    </form>
-    <a href="{{ url_for('add_task') }}" class="add-task-link">Add New Task</a>
-</div>
-    {% if tasks %}
-    <table border="1">
-        <tr>
-            <th>S.No.</th>
-            <th>Title</th>
-            <th>Deadline</th>
-            <th>Priority</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-        {% for task in tasks %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td class="{% if task.status == 'Completed' %}completed{% endif %}">
-                {{ task.title }}
-            </td>
+    <!-- 🧠 Page Content -->
+    <main class="main-content">
+        <div class="controls">
+            <form method="get" action="{{ url_for('index') }}" class="search-form">
+                <input type="text" name="q" placeholder="Search tasks..." value="{{ query }}" class="search-input">
+                <button type="submit" class="btn">Search</button>
+            </form>
+            <a href="{{ url_for('add_task') }}" class="add-task-link"><i class="fas fa-plus-circle"></i> Add New Task</a>
+        </div>
 
-            <td>{{ task.deadline }}</td>
-            <td>{{ task.priority }}</td>
-            <td>{{ task.status }}</td>
-            <td>
-                <a href="{{ url_for('toggle_task', index=loop.index0) }}">
-                    {% if task.status != 'Completed' %}
-                     Mark Done
-                    {% else %}
-                     Undo
-                    {% endif %}
-                </a>
-                |
-                <a href="{{ url_for('delete_task', index=loop.index0) }}"> Delete</a>
-            </td>
-
-        </tr>
-        {% endfor %}
-    </table>
-    {% else %}
-    <p>No tasks yet.</p>
-    {% endif %}
-
+        {% if tasks %}
+        <table class="task-table">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th>Title</th>
+                    <th>Deadline</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td class="{% if task.status == 'Completed' %}completed{% endif %}">{{ task.title }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>{{ task.priority }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>
+                        <a href="{{ url_for('toggle_task', index=loop.index0) }}">
+                            {% if task.status != 'Completed' %}
+                                <i class="fas fa-check-circle"></i> Mark Done
+                            {% else %}
+                                <i class="fas fa-undo"></i> Undo
+                            {% endif %}
+                        </a>
+                        |
+                        <a href="{{ url_for('delete_task', index=loop.index0) }}" class="delete-link">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-tasks-msg">No tasks yet.</p>
+        {% endif %}
+    </main>
 </body>
-
 </html>

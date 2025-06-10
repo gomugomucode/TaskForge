@@ -1,0 +1,105 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #0f172a;
+    font-family: 'Segoe UI', sans-serif;
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.form-box {
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: #38bdf8;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: #334155;
+    color: #f8fafc;
+    font-size: 1rem;
+    transition: 0.2s;
+}
+
+input:focus {
+    outline: 2px solid #38bdf8;
+    background: #1e293b;
+}
+
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #38bdf8;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: #0f172a;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #0ea5e9;
+}
+
+.form-footer {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #94a3b8;
+}
+
+.form-footer a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.flash {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.flash-success {
+    background-color: #16a34a;
+    color: #fff;
+}
+
+.flash-danger {
+    background-color: #dc2626;
+    color: #fff;
+}
+
+.flash-info {
+    background-color: #2563eb;
+    color: #fff;
+}
