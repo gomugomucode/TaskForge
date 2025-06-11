@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>TaskForge</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
@@ -27,7 +29,8 @@
                 <input type="text" name="q" placeholder="Search tasks..." value="{{ query }}" class="search-input">
                 <button type="submit" class="btn">Search</button>
             </form>
-            <a href="{{ url_for('add_task') }}" class="add-task-link"><i class="fas fa-plus-circle"></i> Add New Task</a>
+            <a href="{{ url_for('add_task') }}" class="add-task-link"><i class="fas fa-plus-circle"></i> Add New
+                Task</a>
         </div>
 
         {% if tasks %}
@@ -53,9 +56,9 @@
                     <td>
                         <a href="{{ url_for('toggle_task', index=loop.index0) }}">
                             {% if task.status != 'Completed' %}
-                                <i class="fas fa-check-circle"></i> Mark Done
+                            <i class="fas fa-check-circle"></i> Mark Done
                             {% else %}
-                                <i class="fas fa-undo"></i> Undo
+                            <i class="fas fa-undo"></i> Undo
                             {% endif %}
                         </a>
                         |
@@ -71,5 +74,7 @@
         <p class="no-tasks-msg">No tasks yet.</p>
         {% endif %}
     </main>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>
